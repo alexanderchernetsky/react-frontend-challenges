@@ -21,7 +21,7 @@ const ProductCard: FC<ProductCardProps> = ({title, price, description, image}) =
     }
 
     return (
-        <div className={`product-card`}>
+        <li className="product-card">
             <img src={image} alt={title} width="100" height="100" />
             <h2>{title}</h2>
             <p>{description}</p>
@@ -29,7 +29,7 @@ const ProductCard: FC<ProductCardProps> = ({title, price, description, image}) =
             <div>
                 <button type="button" onClick={handleCopyToClipboard}>Copy title</button>
             </div>
-        </div>
+        </li>
     )
 }
 
@@ -79,9 +79,9 @@ function ProductsPage() {
                     <Link to="/create-product">Create new</Link>
                 </div>
 
+                {loading && <p>Loading...</p>}
+                {error && <p>Error: {error}</p>}
                 <ul className="products">
-                    {loading && <p>Loading...</p>}
-                    {error && <p>Error: {error}</p>}
                     {products.length > 0 && products.map(product => {
                         return (
                             <ProductCard key={product.id} {...product} />
