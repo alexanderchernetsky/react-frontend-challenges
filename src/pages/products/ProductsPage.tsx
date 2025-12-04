@@ -46,7 +46,6 @@ function ProductsPage() {
             setError(null);
             setLoading(true);
             try {
-                // const response = await fetchWithRetryAndAbort('https://fakestoreapi.com/products');
                 const response = await fetchWithCache('https://fakestoreapi.com/products');
 
                 if (!response.ok) {

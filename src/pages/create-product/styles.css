@@ -4,3 +4,23 @@
     justify-content: start;
     align-items: center;
 }
+
+.create-product-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 16px;
+    padding:16px;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 4px;
+    border: 0;
+    padding: 0;
+}

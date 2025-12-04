@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 
+// this function uses the IntersectionObserver Browser API
 const useIntersectionObserver = () => {
     const [isBottomReached, setIsBottomReached] = useState(false);
 
