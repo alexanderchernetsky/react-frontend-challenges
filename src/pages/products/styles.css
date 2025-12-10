@@ -3,13 +3,10 @@
     padding: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.links {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 }
 
 .products {
@@ -19,7 +16,6 @@
     gap: 16px;
     list-style-type: none;
 }
-
 
 .product-card {
     padding: 8px;
