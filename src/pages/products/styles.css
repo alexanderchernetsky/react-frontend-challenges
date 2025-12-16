@@ -52,3 +52,22 @@
     to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
+.custom-select-option {
+    width: 100%;
+    cursor: pointer;
+    list-style: none;
+}
+
+.custom-select-option:hover {
+    background-color: #2196F3;
+}
+
+.custom-select-dropdown {
+    padding: 8px;
+    margin-top: 0;
+    background-color: darkgray;
+}
+
+.active {
+    background-color: #2196F3;
+}
