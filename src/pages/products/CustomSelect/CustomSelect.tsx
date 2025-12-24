@@ -8,7 +8,7 @@ interface CustomSelectProps {
     onChange: (value: string) => void;
 }
 
-// accessible custom select
+// OBJECTIVE: implement accessible custom select component
 const CustomSelect:FC<CustomSelectProps> = ({label, options, value, onChange}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(value ?? null);

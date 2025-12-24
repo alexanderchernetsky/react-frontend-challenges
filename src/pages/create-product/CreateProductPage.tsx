@@ -12,6 +12,7 @@ interface CreateProductForm {
     image: string;
 }
 
+// OBJECTIVE: create form for creation a new product using react-hook-form
 const CreateProductPage = () => {
     const [imageURL, setImageURL] = useState<string | null>(null);
 

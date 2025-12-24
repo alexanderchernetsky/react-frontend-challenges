@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from "react-router-dom";
 import './styles.css';
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import {fetchWithCache} from "../../utils/fetch";
@@ -7,6 +6,7 @@ import {Product} from "./types";
 import ProductCard from "./ProductCard";
 
 
+// OBJECTIVE: fetch data from API and show a grid of items
 // https://fakestoreapi.com/docs#tag/Products/operation/getAllProducts
 function ProductsPage() {
     const [loading, setLoading] = useState(true);
@@ -35,7 +35,7 @@ function ProductsPage() {
                 } else {
                     setError('Failed to fetch data!');
                 }
-                console.log('error', error);
+                console.error('error', error);
             } finally {
                 setLoading(false);
             }
@@ -45,15 +45,9 @@ function ProductsPage() {
     }, []);
 
     return (
-        <div className="App">
+        <div>
             {!loading && !error && isBottomReached && <p className="message">You've reached the bottom!</p>}
             <section>
-                <header className="links">
-                    <Link to="/create-product">Create new product</Link>
-                    <Link to="/todo">Manage todos</Link>
-                </header>
-                <h1>Products</h1>
-
                 {loading && <p>Loading...</p>}
                 {error && <p>Error: {error}</p>}
                 <ul className="products">

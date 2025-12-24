@@ -49,6 +49,7 @@ const ToDoItem:FC<ToDoItemProps> = ({id, name, deleteTodo, toggleTodo, isComplet
 }
 
 
+// OBJECTIVE: implement ToDo application with add / delete / search / complete functionality
 // todo: store the results in local storage and fetch initially, bug!
 // todo: normalise the list
 // todo: apply conditional styling - show completed as crossed
@@ -181,10 +182,10 @@ const TodoPage = () => {
 
     return (
         <main className="page-content">
-            <h1>To Do list</h1>
+            <h1>ToDo list</h1>
             <div className="container">
                 <form id="todo-form" onSubmit={addToDo} className="todo-form">
-                    <label htmlFor="title">To Do Name</label>
+                    <label htmlFor="title">ToDo Name</label>
                     <input type="text" id="title" name="title"/>
                     <button type="submit">Add</button>
                 </form>
