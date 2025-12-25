@@ -17,6 +17,10 @@ const pages = [
     {
         to: '/accordion',
         text: 'Accordion component (accessible accordion)'
+    },
+    {
+        to: '/contact-form',
+        text: 'Contact form (create a form for contact)'
     }
 ]
 

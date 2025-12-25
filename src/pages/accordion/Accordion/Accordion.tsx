@@ -15,9 +15,12 @@ interface AccordionProps {
 // example https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/
 // important notes:
 // use <button> as triggers
+// use h2/h3 as a wrapper for button
 // use aria-expanded={isExpanded} for Screen readers announce expanded / collapsed state
 // use approach <div hidden={!isExpanded}> to hide/show the content
-// use aria-controls={panelId} -it creates a programmatic relationship between a control element (like a button or tab) and the element it controls (like a panel or tab content).
+// use aria-controls={panelId} - creates a programmatic relationship between a control element (like a button or tab) and the element it controls (like a panel or tab content).
+// use aria-labelledby={buttonId} for the div with content
+// use aria-hidden="true" for the chevron icon
 // todo: add transition for smooth expand/collapse
 // todo: add Arrow keys for navigation (optional but nice)
 const Accordion:FC<AccordionProps> = ({data}) => {
