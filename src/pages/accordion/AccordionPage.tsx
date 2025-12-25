@@ -30,8 +30,8 @@ const accordionTestData: AccordionRow[] = [
 const AccordionPage = () => {
     return (
         <main className="flex flex-col items-center justify-center w-full p-[32px]">
-            <h1 className="font-bold">Accordion Page</h1>
-            <section className="mt-[32px]">
+            <h1 className="text-3xl font-bold text-gray-900 mb-8">Accordion</h1>
+            <section className="w-full max-w-3xl">
                 <Accordion data={accordionTestData} />
             </section>
         </main>

@@ -91,28 +91,57 @@ const ContactForm = () => {
     }
 
     return (
-        <form id="contact-form" onSubmit={handleFormSubmit} className="w-[500px]">
-            <fieldset className="flex flex-col justify-start gap-1">
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" className="border-[1px] border-black" aria-describedby="name-error" />
-                {formErrors.name && <p id="name-error" className="text-red-500 text-sm" aria-live="polite">{formErrors.name}</p>}
-            </fieldset>
+        <form id="contact-form" onSubmit={handleFormSubmit} className="w-full max-w-lg min-w-[320px] sm:min-w-[400px] bg-white p-6 rounded-lg shadow-md border border-gray-100">
+            <div className="space-y-4">
+                <fieldset className="flex flex-col gap-1.5 border-none p-0">
+                    <label htmlFor="name" className="text-sm font-semibold text-gray-700">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                        aria-describedby="name-error"
+                    />
+                    {formErrors.name && <p id="name-error" className="text-red-500 text-xs italic" aria-live="polite">{formErrors.name}</p>}
+                </fieldset>
 
-            <fieldset className="flex flex-col justify-start gap-1">
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" className="border-[1px] border-black" aria-describedby="email-error" />
-                {formErrors.email && <p id="email-error" className="text-red-500 text-sm" aria-live="polite">{formErrors.email}</p>}
-            </fieldset>
+                <fieldset className="flex flex-col gap-1.5 border-none p-0">
+                    <label htmlFor="email" className="text-sm font-semibold text-gray-700">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                        aria-describedby="email-error"
+                    />
+                    {formErrors.email && <p id="email-error" className="text-red-500 text-xs italic" aria-live="polite">{formErrors.email}</p>}
+                </fieldset>
 
-            <fieldset className="flex flex-col justify-start gap-1">
-                <label htmlFor="message">Message</label>
-                <textarea name="message" id="message" className="border-[1px] border-black" aria-describedby="email-error" />
-                {formErrors.message && <p id="message-error" className="text-red-500 text-sm" aria-live="polite">{formErrors.message}</p>}
-            </fieldset>
+                <fieldset className="flex flex-col gap-1.5 border-none p-0">
+                    <label htmlFor="message" className="text-sm font-semibold text-gray-700">Message</label>
+                    <textarea
+                        name="message"
+                        id="message"
+                        rows={4}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none"
+                        aria-describedby="message-error"
+                    />
+                    {formErrors.message && <p id="message-error" className="text-red-500 text-xs italic" aria-live="polite">{formErrors.message}</p>}
+                </fieldset>
 
-            <button disabled={isSubmitting} type="submit" className="mt-4 border-[1px] border-black w-full">Send</button>
-            {isSuccess && (<p className="text-center mt-2 text-green-500">The message has been sent successfully!</p>)}
-            {isError && (<p className="text-center mt-2 text-red-500">The form submission has failed!</p>)}
+                <button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    {isSubmitting ? 'Sending...' : 'Send'}
+                </button>
+
+                <div aria-live="polite" className="text-center min-h-[1.5rem]">
+                    {isSuccess && (<p className="text-green-600 font-medium">The message has been sent successfully!</p>)}
+                    {isError && (<p className="text-red-600 font-medium">The form submission has failed!</p>)}
+                </div>
+            </div>
         </form>
     );
 }

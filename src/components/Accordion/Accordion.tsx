@@ -1,5 +1,5 @@
 import {FC, useState} from "react";
-import { ChevronDownCircle, ChevronUpCircle } from "lucide-react";
+import { ChevronDownCircle } from "lucide-react";
 
 export interface AccordionRow {
     id: string;
@@ -21,7 +21,6 @@ interface AccordionProps {
 // use aria-controls={panelId} - creates a programmatic relationship between a control element (like a button or tab) and the element it controls (like a panel or tab content).
 // use aria-labelledby={buttonId} for the div with content
 // use aria-hidden="true" for the chevron icon
-// todo: add transition for smooth expand/collapse
 // todo: add Arrow keys for navigation (optional but nice)
 const Accordion:FC<AccordionProps> = ({data}) => {
     const [expanded, setExpanded] = useState<string[]>([]);
@@ -39,7 +38,7 @@ const Accordion:FC<AccordionProps> = ({data}) => {
     }
 
     return (
-        <div className="w-[800px] border-2 rounded-xl border-black">
+        <div className="max-w-3xl w-full border border-gray-200 rounded-lg shadow-sm bg-white overflow-hidden">
             {data.map((row, index) => {
                 const isExpanded = expanded.includes(row.id);
                 const isLastRow = index === (data.length - 1);
@@ -47,28 +46,37 @@ const Accordion:FC<AccordionProps> = ({data}) => {
                 const panelId = `sect-${row.id}`;
 
                 return (
-                    <div key={row.id} className={`p-4 ${!isLastRow && 'border-b-[1px] border-black'}`}>
-                        <h2>
+                    <div key={row.id} className={`${!isLastRow ? 'border-b border-gray-200' : ''}`}>
+                        <h3>
                             <button
                                 type="button"
                                 id={buttonId}
                                 aria-expanded={isExpanded}
                                 aria-controls={panelId}
                                 onClick={() => handleTitleClick(row.id)}
-                                className="flex flex-row gap-2 w-full"
+                                className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-100 transition-all gap-3"
                             >
-                                <span>{row.title}</span>
-                                <span className="ml-auto" aria-hidden="true">{isExpanded ? <ChevronUpCircle/> : <ChevronDownCircle />}</span>
+                                <span className={`${isExpanded ? 'text-blue-600' : ''}`}>{row.title}</span>
+                                <ChevronDownCircle
+                                    className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-blue-600' : 'text-gray-500'}`}
+                                    aria-hidden="true"
+                                />
                             </button>
-                        </h2>
-                        <div id={panelId} role="region" aria-labelledby={buttonId} hidden={!isExpanded}>
-                            <p>{row.content}</p>
+                        </h3>
+                        <div
+                            id={panelId}
+                            role="region"
+                            aria-labelledby={buttonId}
+                            className={`transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden bg-gray-50/50`}
+                        >
+                            <div className="p-5 border-t border-gray-100">
+                                <p className="text-gray-600 leading-relaxed">{row.content}</p>
+                            </div>
                         </div>
                     </div>
                 )
             })}
         </div>
-
     )
 }
 
