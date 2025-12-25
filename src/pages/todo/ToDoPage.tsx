@@ -1,62 +1,12 @@
-import {FC, useEffect, useRef, useState} from "react";
-import './styles.css';
-import {Trash2} from "lucide-react";
-
-interface ToDo {
-    id: number;
-    name: string;
-    isCompleted: boolean;
-}
-
-interface ToDoItemProps extends ToDo {
-    toggleTodo: (id: number) => void;
-    deleteTodo: (id: number) => void;
-}
-
-class LocalStorageClient {
-    store(todos: ToDo[]) {
-        localStorage.setItem("todos", JSON.stringify(todos));
-    }
-
-    retrieve() {
-        const data = localStorage.getItem("todos");
-        if (data) {
-            return JSON.parse(data) as ToDo[];
-        } else {
-            return null;
-        }
-    }
-}
-
-const storage = new LocalStorageClient();
-
-const ToDoItem:FC<ToDoItemProps> = ({id, name, deleteTodo, toggleTodo, isCompleted}) => {
-    return (
-        <li className="list-item">
-            <label htmlFor={`todo-checkbox-${id}`}>{name}</label>
-            <input id={`todo-checkbox-${id}`} type="checkbox" onChange={() => toggleTodo(id)} checked={isCompleted} onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    toggleTodo(id);
-                }
-            }} />
-            <button type='button' onClick={() => deleteTodo(id)}>
-                <span className="sr-only">Delete</span>
-                <Trash2 />
-            </button>
-        </li>
-    )
-}
-
+import {useCallback, useEffect, useRef, useState} from "react";
+import {TodoList} from "./types";
+import storage from "./LocalStorageClient";
+import ToDoItem from "./TodoItem/TodoItem";
 
 // OBJECTIVE: implement ToDo application with add / delete / search / complete functionality
-// todo: store the results in local storage and fetch initially, bug!
-// todo: normalise the list
-// todo: apply conditional styling - show completed as crossed
-// todo: optimise the performance
 const TodoPage = () => {
-    const [todos, setTodos] = useState<ToDo[]>([]);
-    const [filteredTodos, setFilteredTodos] = useState<ToDo[] | null>(null);
+    const [todos, setTodos] = useState<TodoList>({});
+    const [filteredTodos, setFilteredTodos] = useState<TodoList | null>(null);
 
     // useRef to store the timeout ID so it persists across renders
     const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -79,23 +29,46 @@ const TodoPage = () => {
 
         if (!title) {
             console.warn("Title is required");
-            return
+            return;
         }
-        // update state
-        setTodos(prev => {
-            return [...prev, {
-                id: Math.round(Math.random() * 1_000_000),
-                name: title,
-                isCompleted: false,
-            }];
-        });
 
-        // clean up the form
+        const newTodo = {
+            id: Math.round(Math.random() * 1_000_000),
+            name: title,
+            isCompleted: false,
+        };
+
+        const updatedTodos = {...todos, [newTodo.id]: newTodo};
+        setTodos(updatedTodos);
+        storage.store(updatedTodos);
+
         form.reset();
-
-        // store
-        storage.store(todos);
     }
+
+    const toggleTodo = useCallback((id: number) => {
+        setTodos(prev => {
+            const updated = {
+                ...prev,
+                [id]: {
+                    ...prev[id],
+                    isCompleted: !prev[id].isCompleted
+                }
+            }
+            // update store
+            storage.store(updated);
+            return updated;
+        });
+    }, [])
+
+    const deleteTodo = useCallback((id: number) => {
+        setTodos(prev => {
+            const updated = {...prev};
+            delete updated[id];
+            storage.store(updated);
+            return updated;
+        });
+    }, []);
+
 
     // search with debouncing without external libraries
     const filterTodos = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,7 +79,7 @@ const TodoPage = () => {
             clearTimeout(debounceTimerRef.current);
         }
 
-        // Filtering logic with attention to case sensitivity: make it case-sensitive and case-insensitive
+        // Filtering logic with attention to case sensitivity
         // case-sensitive search
         // const filtered = todos.filter(item => {
         //     return item.name.includes(searchText);
@@ -114,11 +87,13 @@ const TodoPage = () => {
 
         const timeout = setTimeout(() => {
             // case-insensitive search
-            const filtered = todos.filter(item => {
-                return item.name.toLowerCase().includes(searchText.toLowerCase());
+            const entries = Object.entries(todos);
+
+            const filtered = entries.filter(item => {
+                return item[1].name.toLowerCase().includes(searchText.toLowerCase());
             });
 
-            setFilteredTodos(filtered);
+            setFilteredTodos(Object.fromEntries(filtered));
         }, 300);
 
         debounceTimerRef.current = timeout;
@@ -127,36 +102,16 @@ const TodoPage = () => {
     useEffect(() => {
         // if todos change - filter todos again
         const searchText = searchInputRef?.current?.value;
-
-        console.log(searchText);
-
         if (!searchText) return;
 
-        const filtered = todos.filter(item => {
-            return item.name.toLowerCase().includes(searchText.toLowerCase());
+        const entries = Object.entries(todos);
+
+        const filtered = entries.filter(item => {
+            return item[1].name.toLowerCase().includes(searchText.toLowerCase());
         });
 
-        setFilteredTodos(filtered);
+        setFilteredTodos(Object.fromEntries(filtered));
     }, [todos])
-
-    const toggleTodo = (id: number) => {
-        setTodos(prev => {
-            const updated = prev.map(item => {
-                if (item.id === id) {
-                    return {
-                        ...item,
-                        isCompleted: !item.isCompleted
-                    }
-                }
-                return item;
-            });
-
-            return updated;
-        });
-
-        // store
-        storage.store(todos);
-    }
 
     const resetFilter = () => {
         setFilteredTodos(null);
@@ -169,48 +124,42 @@ const TodoPage = () => {
         }
     }
 
-    const deleteTodo = (id: number) => {
-        setTodos(prev => {
-            return prev.filter(item => item.id !== id);
-        });
-
-        // store
-        storage.store(todos);
-    }
-
-    console.log('render', filteredTodos);
+    console.log('todos', todos);
 
     return (
-        <main className="page-content">
-            <h1>ToDo list</h1>
-            <div className="container">
-                <form id="todo-form" onSubmit={addToDo} className="todo-form">
-                    <label htmlFor="title">ToDo Name</label>
-                    <input type="text" id="title" name="title"/>
-                    <button type="submit">Add</button>
+        <main className="flex flex-col justify-start items-center min-h-screen py-8">
+            <h1 className="text-3xl font-bold mb-6">ToDo list</h1>
+            <div className="w-full max-w-md flex flex-col gap-6">
+                <form id="todo-form" onSubmit={addToDo} className="flex flex-row gap-2">
+                    <label htmlFor="title" className="sr-only">ToDo Name</label>
+                    <input type="text" id="title" name="title" placeholder="New todo..." className="flex-1 border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">Add</button>
                 </form>
 
-                <div className="todo-search">
-                    <label htmlFor="search-input">Search:</label>
-                    <input ref={searchInputRef} name="search-input" id="search-input" type="search" onChange={filterTodos} />
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="search-input" className="text-sm font-medium">Search:</label>
+                    <input ref={searchInputRef} name="search-input" id="search-input" type="search" onChange={filterTodos} placeholder="Search todos..." className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
 
-                <p className="list-label">ToDo List:</p>
-                <ul>
-                    {filteredTodos ? (
-                        filteredTodos.map(item => <ToDoItem key={item.id} {...item} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />)
-                    ) : (
-                        todos.map(item => <ToDoItem key={item.id} {...item} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />)
-                    )}
+                <div className="flex flex-col gap-2">
+                    <p className="text-lg font-semibold border-b pb-1">ToDo List:</p>
+                    <ul className="list-none p-0 flex flex-col gap-1">
+                        {filteredTodos ? (
+                            Object.keys(filteredTodos).length === 0 ? <div>No items found.</div> :
+                                Object.values(filteredTodos).map(item => <ToDoItem key={item.id} {...item} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />)
+                        ) : (
+                            Object.values(todos).map(item => <ToDoItem key={item.id} {...item} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />)
+                        )}
+
+                        {Object.keys(todos).length === 0 && (
+                            <li className="text-gray-500 italic">No items in the list.</li>
+                        )}
+                    </ul>
 
                     {filteredTodos && (
-                        <button type="button" onClick={resetFilter}>Reset filter</button>
+                        <button type="button" onClick={resetFilter} className="mt-2 text-blue-500 hover:underline self-start">Reset search filter</button>
                     )}
-
-                    {todos?.length === 0 && (
-                        <li>No items in the list.</li>
-                    )}
-                </ul>
+                </div>
             </div>
         </main>
     )

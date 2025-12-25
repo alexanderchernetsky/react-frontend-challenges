@@ -12,7 +12,7 @@ const pages = [
     },
     {
         to: '/todo',
-        text: 'Manage todos (ToDo application with add / delete / search / complete functionality)',
+        text: 'Manage todos (ToDo application with add / delete / search / complete functionality. Stores data in Session Storage)',
     },
     {
         to: '/accordion',

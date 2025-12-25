@@ -1,6 +1,6 @@
 import {ChangeEvent, useState} from "react";
 import {Controller, useForm} from "react-hook-form";
-import CustomSelect from "../products/CustomSelect/CustomSelect";
+import CustomSelect from "../../components/Select/CustomSelect";
 
 
 interface CreateProductForm {
@@ -11,7 +11,7 @@ interface CreateProductForm {
     image: string;
 }
 
-// OBJECTIVE: create form for creation a new product using react-hook-form
+// OBJECTIVE: create an accessible form for creation a new product using react-hook-form
 const CreateProductPage = () => {
     const [imageURL, setImageURL] = useState<string | null>(null);
 
@@ -88,7 +88,7 @@ const CreateProductPage = () => {
                     {/* Image */}
                     <fieldset className="w-full flex flex-col justify-start items-start gap-1 border-0 p-0">
                         <label htmlFor="product-image">Upload image</label>
-                        <input {...register('image',  {required: 'Image is required'})} name="image" type="file" accept="image/*" id="product-image" onChange={handleFileUpload} className="border p-1 rounded" />
+                        <input {...register('image',  {required: 'Image is required'})} name="image" type="file" accept="image/*" id="product-image" onChange={handleFileUpload} className="p-1" />
                         <div>
                             {imageURL && <img src={imageURL} width={100} height={100} alt="Preview" />}
                         </div>

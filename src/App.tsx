@@ -4,7 +4,7 @@ import CreateProductsPage from "./pages/create-product/CreateProductPage";
 import TodoPage from "./pages/todo/ToDoPage";
 import AccordionPage from "./pages/accordion/AccordionPage";
 import HomePage from "./pages/home/HomePage";
-import ContactPage from "./pages/contact-form/ContactPage";
+import ContactPage from "./pages/contact/ContactPage";
 
 function App() {
     return (

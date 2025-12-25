@@ -3,7 +3,7 @@ import './styles.css';
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import {fetchWithCache} from "../../utils/fetch";
 import {Product} from "./types";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCard/ProductCard";
 
 
 // OBJECTIVE: fetch data from API and show a grid of items

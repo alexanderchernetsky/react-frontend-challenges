@@ -1,4 +1,4 @@
-import Accordion, {AccordionRow} from "./Accordion/Accordion";
+import Accordion, {AccordionRow} from "../../components/Accordion/Accordion";
 
 const accordionTestData: AccordionRow[] = [
     {

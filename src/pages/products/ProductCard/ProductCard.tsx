@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {Product} from "./types";
+import {Product} from "../types";
 
 interface ProductCardProps extends Product {}
 
