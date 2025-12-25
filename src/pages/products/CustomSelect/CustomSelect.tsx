@@ -77,7 +77,7 @@ const CustomSelect:FC<CustomSelectProps> = ({label, options, value, onChange}) =
     }, [activeIndex, isDropdownOpen]);
 
     return (
-        <fieldset className="form-group" ref={dropdownContainerRef}>
+        <fieldset className="w-full flex flex-col justify-start items-start gap-1 border-0 p-0" ref={dropdownContainerRef}>
             <label htmlFor="category">{label}</label>
             <button
                 ref={triggerButtonRef}
@@ -87,6 +87,7 @@ const CustomSelect:FC<CustomSelectProps> = ({label, options, value, onChange}) =
                 onClick={toggleDropdown}
                 onKeyDown={onKeyDownTrigger}
                 type='button'
+                className="border p-1 rounded w-full text-left"
             >
                 {selectedOption ??  '-- Select a category --'}
             </button>
@@ -130,7 +131,7 @@ const CustomSelect:FC<CustomSelectProps> = ({label, options, value, onChange}) =
                             id="dropdown"
                             role="listbox"
                             aria-labelledby="category"
-                            className="custom-select-dropdown"
+                            className="absolute z-10 mt-1 w-full bg-white border rounded shadow-lg max-h-60 overflow-auto list-none p-0"
                             tabIndex={-1}
                             ref={listRef}
                             aria-activedescendant={activeOptionId}
@@ -140,7 +141,7 @@ const CustomSelect:FC<CustomSelectProps> = ({label, options, value, onChange}) =
                                 <li
                                     key={opt}
                                     id={`category-option-${i}`}
-                                    className={`custom-select-option${i === activeIndex ? ' active' : ''}`}
+                                    className={`p-2 cursor-pointer ${i === activeIndex ? 'bg-blue-100' : ''}`}
                                     role="option"
                                     aria-selected={selectedOption === opt}
                                     onMouseEnter={() => setActiveIndex(i)}

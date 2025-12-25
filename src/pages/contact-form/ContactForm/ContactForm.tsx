@@ -17,9 +17,10 @@ import {useState} from "react";
 // If all the form fields are correctly filled up, you will see an alert containing a success message. Congratulations!
 
 
-// todo: add validation with validation messages
-// use aria-live="polite" for error/success messages screen reader will announce changes when it can do so without interrupting the user.
-// use aria-describedby="name-error" for error message related to the input/textarea field
+// Notes:
+// submit handler receives event: React.FormEvent<HTMLFormElement>; const form = event.target as HTMLFormElement; const formData = new FormData(form); const data = Object.fromEntries(formData);
+// use aria-live="polite" for error/success messages - screen reader will announce changes when it can do so without interrupting the user.
+// use aria-describedby="name-error" for error messages related to the input/textarea field
 const ContactForm = () => {
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
