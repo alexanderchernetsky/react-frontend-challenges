@@ -26,6 +26,11 @@ const pages = [
         to: '/contact-form',
         title: 'Contact form',
         description: 'A robust contact form with manual validation, submission state handling (loading/success/error), and ARIA-live announcements.'
+    },
+    {
+        to: '/progress-bars',
+        title: 'Progress bars',
+        description: 'an app where clicking the "Add" button adds progress bars to the page. The progress bars fill up gradually as soon as they are shown.'
     }
 ]
 

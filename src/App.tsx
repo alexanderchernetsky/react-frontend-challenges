@@ -5,6 +5,7 @@ import TodoPage from "./pages/todo/ToDoPage";
 import AccordionPage from "./pages/accordion/AccordionPage";
 import HomePage from "./pages/home/HomePage";
 import ContactPage from "./pages/contact/ContactPage";
+import ProgressBarsPage from "./pages/ProgressBarsPage/ProgressBarsPage";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/todo" element={<TodoPage />} />
             <Route path="/accordion" element={<AccordionPage />} />
             <Route path="/contact-form" element={<ContactPage />} />
+            <Route path="/progress-bars" element={<ProgressBarsPage />} />
         </Routes>
     );
 }
