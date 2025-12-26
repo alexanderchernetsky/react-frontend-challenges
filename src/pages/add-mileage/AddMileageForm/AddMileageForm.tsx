@@ -8,7 +8,8 @@ import {Trash2} from "lucide-react";
 
 // Notes:
 // we need to use the controlled form here
-// todo: next - add validation
+// don't forget to clear the form after successful submit
+// todo: next - add validation: Required field checks, Ensuring at least one destination has a value, Min/Max length for text inputs
 const AddMileageForm = () => {
     const [startingPoint, setStartingPoint] = useState('');
     const [destinations, setDestinations] = useState([{id: Math.round(Math.random() * 10000), name: ''}]);
@@ -21,7 +22,7 @@ const AddMileageForm = () => {
 
     const addDestination = () => {
         setDestinations(prev => {
-            return [...prev, {id: Math.random() * 10000, name: ''}];
+            return [...prev, {id: Math.round(Math.random() * 10000), name: ''}];
         });
     }
 
@@ -73,12 +74,18 @@ const AddMileageForm = () => {
 
             if (!response.ok) {
                 setIsError(true);
+                return;
             }
 
             const data = await response.json();
             console.log('data', data);
             setIsSuccess(true);
-            // todo: clear form
+            // clear the form after success
+            setStartingPoint('');
+            setDestinations([{id: Math.round(Math.random() * 10000), name: ''}]);
+            setExpenseName('');
+            setVehicle('');
+            setIsExpenseNameVirgin(true);
         } catch (error) {
             console.error('error', error);
             setIsError(true);
@@ -113,7 +120,7 @@ const AddMileageForm = () => {
 
                 {
                     destinations.map((d) => {
-                        const value = destinations.find(dest => dest.id === d.id)?.name;
+                        const isDeleteDisabled = destinations.length <= 1;
                         return (
                             <fieldset key={d.id} className="flex flex-col space-y-1.5 animate-in fade-in slide-in-from-top-2 duration-300">
                                 <label htmlFor={`destination-${d.id}`} className="text-sm font-semibold text-gray-700">Destination</label>
@@ -124,15 +131,15 @@ const AddMileageForm = () => {
                                         id={`destination-${d.id}`}
                                         className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                                         placeholder="Enter destination"
-                                        value={value}
+                                        value={d.name}
                                         onChange={(e) => editDestination(d.id, e.target.value)}
                                     />
                                     <button
                                         type="button"
                                         onClick={() => deleteDestination(d.id)}
-                                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-200"
+                                        className={`p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-200 ${isDeleteDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
                                         title="Remove destination"
-                                        disabled={destinations.length <= 1}
+                                        disabled={isDeleteDisabled}
                                     >
                                         <Trash2 size={20} />
                                     </button>
@@ -190,7 +197,7 @@ const AddMileageForm = () => {
                 Send
             </button>
             {isSuccess && (
-                <p className="mt-2 text-green-500 text-center" aria-live="polite">The form has been submitted succesfully</p>
+                <p className="mt-2 text-green-500 text-center" aria-live="polite">The form has been submitted successfully</p>
             )}
             {isError && (
                 <p className="mt-2 text-red-500 text-center" aria-live="polite">Something went wrong</p>
