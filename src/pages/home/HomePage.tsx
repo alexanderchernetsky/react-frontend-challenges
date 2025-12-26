@@ -30,8 +30,13 @@ const pages = [
     {
         to: '/progress-bars',
         title: 'Progress bars',
-        description: 'an app where clicking the "Add" button adds progress bars to the page. The progress bars fill up gradually as soon as they are shown.'
-    }
+        description: 'An app where clicking the "Add" button adds progress bars to the page. The progress bars fill up gradually as soon as they are shown.'
+    },
+    {
+        to: '/add-mileage-form',
+        title: 'Add mileage form',
+        description: 'Create form like on the image. There is a dynamic field - destinations, select that fetches values from the API, on submit - send data to the external API using POST. The expenseName field should be prefilled as a string consisting of “startingPoint + destination”.'
+    },
 ]
 
 const HomePage = () => {

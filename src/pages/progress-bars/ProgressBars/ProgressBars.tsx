@@ -9,6 +9,9 @@ import React, {useEffect, useState} from "react";
 // Each bar takes approximately 2000ms to completely fill up.
 
 
+// Notes:
+// use setInterval
+// set width as inline styles: style={{ width: `${progress}%` }}
 const ProgressBar = React.memo(()=> {
     const [progress, setProgress] = useState(0);
 
