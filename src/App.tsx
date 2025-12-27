@@ -7,6 +7,7 @@ import HomePage from "./pages/home/HomePage";
 import ContactPage from "./pages/contact/ContactPage";
 import ProgressBarsPage from "./pages/progress-bars/ProgressBarsPage";
 import AddMileagePage from "./pages/add-mileage/AddMileagePage";
+import MortgageCalculatorPage from "./pages/mortgage-calculator/MorgageCalculatorPage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/contact-form" element={<ContactPage />} />
             <Route path="/progress-bars" element={<ProgressBarsPage />} />
             <Route path="/add-mileage-form" element={<AddMileagePage />} />
+            <Route path="/mortgage-calculator" element={<MortgageCalculatorPage />} />
         </Routes>
     );
 }
