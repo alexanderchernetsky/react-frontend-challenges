@@ -42,6 +42,11 @@ const pages = [
         title: 'Mortgage Calculator',
         description: 'Build a simple mortgage calculator widget that takes in a loan amount, interest rate, loan term, and calculates the monthly mortgage payment, total payment amount, and total interest paid.'
     },
+    {
+        to: '/tabs',
+        title: 'Tabs',
+        description: 'An accessible tabs component that allows users to switch between different content views.'
+    },
 ]
 
 const HomePage = () => {
