@@ -27,7 +27,8 @@ interface TabsProps {
 // Tabs should be linked to Panels using aria-controls and aria-labelledby need IDs to reference
 // Allow passing a defaultActiveTabId prop instead of always defaulting to the first tab.
 // accessible example https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/
-// todo: improve - add Keyboard Navigation (ArrowRight, ArrowLeft)
+// we have to add Keyboard Navigation (ArrowRight, ArrowLeft, Home, End) with autofocus
+// unselected tabs should be removed from tab navigation tabIndex={isActive ? 0 : -1}
 const Tabs: FC<TabsProps> = ({tabs, defaultActiveTabId}) => {
     const [activeTabId, setActiveTabId] = useState<number>(
         defaultActiveTabId ?? tabs[0]?.id
@@ -36,17 +37,44 @@ const Tabs: FC<TabsProps> = ({tabs, defaultActiveTabId}) => {
     const activeTab = tabs.find(tab => tab.id === activeTabId);
 
     const handleTitleClick = (id: number) => {
-        const tab = tabs.find((tab) => tab.id === id);
-        if (tab) {
-            setActiveTabId(id);
-        }
+        setActiveTabId(id);
     };
+
+    const handleKeyboardNavigation = (e: React.KeyboardEvent<HTMLDivElement>)=> {
+        const currentIndex = tabs.findIndex(tab => tab.id === activeTabId);
+        let newIndex = currentIndex;
+
+        switch (e.key) {
+            case 'ArrowLeft':
+                e.preventDefault();
+                newIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                newIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+                break;
+            case 'Home':
+                e.preventDefault();
+                newIndex = 0;
+                break;
+            case 'End':
+                e.preventDefault();
+                newIndex = tabs.length - 1;
+                break;
+            default:
+                return;
+        }
+
+        const newTabId = tabs[newIndex].id;
+        setActiveTabId(newTabId);
+        setTimeout(() => document.getElementById(`tab-${newTabId}`)?.focus(), 0);
+    }
 
     if (!tabs.length) return null;
 
     return (
        <div className="flex flex-col w-full gap-4 p-4 border rounded-lg shadow-sm bg-white">
-           <div className="flex border-b border-gray-200" role="tablist">
+           <div className="flex border-b border-gray-200" role="tablist" onKeyDown={handleKeyboardNavigation}>
                {tabs.map((tab) => {
                    const isActive = activeTab?.id === tab.id;
                    return (
@@ -56,6 +84,7 @@ const Tabs: FC<TabsProps> = ({tabs, defaultActiveTabId}) => {
                            aria-selected={isActive}
                            aria-controls={`panel-${tab.id}`}
                            id={`tab-${tab.id}`}
+                           tabIndex={isActive ? 0 : -1}
                            onClick={() => handleTitleClick(tab.id)}
                            className={`px-4 py-2 text-sm font-medium transition-colors duration-200
                                ${isActive 
@@ -69,7 +98,7 @@ const Tabs: FC<TabsProps> = ({tabs, defaultActiveTabId}) => {
                })}
            </div>
 
-           <div role="tabpanel" id={`panel-${activeTab?.id}`} aria-labelledby={`tab-${activeTab?.id}`} className="p-4 text-gray-700 bg-gray-50 rounded-md min-h-[100px]">
+           <div role="tabpanel" id={`panel-${activeTab?.id}`} aria-labelledby={`tab-${activeTab?.id}`} tabIndex={0} className="p-4 text-gray-700 bg-gray-50 rounded-md min-h-[100px]">
                {activeTab?.content}
            </div>
        </div>
