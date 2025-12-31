@@ -1,4 +1,4 @@
-import Tabs from "./Tabs/Tabs";
+import Tabs from "../../components/Tabs/Tabs";
 
 const TabsPage = () => {
     const tabs = [

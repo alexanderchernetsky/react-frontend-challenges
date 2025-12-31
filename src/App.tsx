@@ -9,6 +9,7 @@ import ProgressBarsPage from "./pages/progress-bars/ProgressBarsPage";
 import TabsPage from "./pages/tabs/TabsPage";
 import AddMileagePage from "./pages/add-mileage/AddMileagePage";
 import MortgageCalculatorPage from "./pages/mortgage-calculator/MorgageCalculatorPage";
+import HolyGrailPage from "./pages/holy-grail/HolyGrailPage";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/tabs" element={<TabsPage />} />
             <Route path="/add-mileage-form" element={<AddMileagePage />} />
             <Route path="/mortgage-calculator" element={<MortgageCalculatorPage />} />
+            <Route path="/holy-grail" element={<HolyGrailPage />} />
         </Routes>
     );
 }

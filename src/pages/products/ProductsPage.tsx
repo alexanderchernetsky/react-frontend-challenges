@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import './styles.css';
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import {fetchWithCache} from "../../utils/fetch";
 import {Product} from "./types";
@@ -45,21 +44,39 @@ function ProductsPage() {
     }, []);
 
     return (
-        <div>
-            {!loading && !error && isBottomReached && <p className="message">You've reached the bottom!</p>}
-            <section>
-                {loading && <p>Loading...</p>}
-                {error && <p>Error: {error}</p>}
-                <ul className="products">
+        <main className="p-8 flex flex-col items-center min-h-screen bg-gray-50">
+            <h1 className="text-3xl font-bold mb-8 text-gray-900">Products</h1>
+
+            {!loading && !error && isBottomReached && (
+                <div className="fixed top-6 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg z-50 animate-bounce">
+                    You've reached the bottom!
+                </div>
+            )}
+
+            <section className="w-full max-w-7xl">
+                {loading && (
+                    <div className="flex justify-center items-center h-64">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                        <p className="ml-4 text-gray-600 font-medium">Loading products...</p>
+                    </div>
+                )}
+
+                {error && (
+                    <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8">
+                        <p className="text-red-700">Error: {error}</p>
+                    </div>
+                )}
+
+                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {products.length > 0 && products.map(product => {
                         return (
                             <ProductCard key={product.id} {...product} />
                         )
                     })}
                 </ul>
-                <div id="bottomSentinel" />
+                <div id="bottomSentinel" className="h-4" />
             </section>
-        </div>
+        </main>
     );
 }
 
