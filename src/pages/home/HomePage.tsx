@@ -52,6 +52,11 @@ const pages = [
         title: 'Holy Grail Layout',
         description: 'The Holy Grail layout is a famous CSS page layout that has traditionally been hard to implement. It consists of a header, footer, and three columns. The left column contains navigation items, the middle column contains the page contents, and the right column contains ads.'
     },
+    {
+        to: '/dice-roller',
+        title: 'Dice Roller',
+        description: 'A simple dice roller application that allows users to roll multiple dice and see the results.'
+    },
 ]
 
 const HomePage = () => {

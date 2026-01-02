@@ -10,6 +10,7 @@ import TabsPage from "./pages/tabs/TabsPage";
 import AddMileagePage from "./pages/add-mileage/AddMileagePage";
 import MortgageCalculatorPage from "./pages/mortgage-calculator/MorgageCalculatorPage";
 import HolyGrailPage from "./pages/holy-grail/HolyGrailPage";
+import DiceRollerPage from "./pages/dice-roller/DiceRollerPage";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/add-mileage-form" element={<AddMileagePage />} />
             <Route path="/mortgage-calculator" element={<MortgageCalculatorPage />} />
             <Route path="/holy-grail" element={<HolyGrailPage />} />
+            <Route path="/dice-roller" element={<DiceRollerPage />} />
         </Routes>
     );
 }
