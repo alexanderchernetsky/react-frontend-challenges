@@ -42,7 +42,7 @@ const ProgressBars = () => {
 
     const handleAddBar = () => {
         setBars(prev => {
-            return [...prev, { id: prev.length + 1}];
+            return [...prev, { id: Date.now()}];
         });
     }
 
