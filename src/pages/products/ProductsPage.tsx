@@ -47,6 +47,24 @@ function ProductsPage() {
         <main className="p-8 flex flex-col items-center min-h-screen bg-gray-50">
             <h1 className="text-3xl font-bold mb-8 text-gray-900">Products</h1>
 
+            <section className="w-full max-w-3xl mb-12 p-6 bg-blue-50 border border-blue-200 rounded-lg shadow-sm">
+                <h2 className="text-xl font-semibold text-blue-900 mb-4">Objective: Fetch and Display Products</h2>
+                <p className="text-blue-800 mb-4">
+                    Build a dynamic product grid that fetches data from an external API and implements infinite scroll detection.
+                </p>
+                <div className="space-y-2">
+                    <p className="font-medium text-blue-900">Key Requirements:</p>
+                    <ul className="list-disc list-inside text-blue-800 space-y-1 ml-2">
+                        <li>Fetch product data from <code className="bg-blue-100 px-1 rounded">fakestoreapi.com</code></li>
+                        <li>Display products in a responsive grid layout</li>
+                        <li>Implement a custom <code className="bg-blue-100 px-1 rounded">useIntersectionObserver</code> hook</li>
+                        <li>Detect when the user reaches the bottom of the page</li>
+                        <li>Handle loading and error states during data fetching</li>
+                        <li>Use caching to optimize API requests</li>
+                    </ul>
+                </div>
+            </section>
+
             {!loading && !error && isBottomReached && (
                 <div className="fixed top-6 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg z-50 animate-bounce">
                     You've reached the bottom!

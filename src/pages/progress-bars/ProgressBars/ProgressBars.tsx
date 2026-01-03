@@ -27,8 +27,11 @@ const ProgressBar = React.memo(()=> {
 
 
     return (
-        <div className="w-[500px] h-[16px] bg-gray-100 flex flex-row">
-            <div className={`h-[16px] bg-green-500`} style={{ width: `${progress}%` }} />
+        <div className="w-full max-w-[500px] h-[16px] bg-gray-200 rounded-full overflow-hidden border border-gray-300 shadow-inner">
+            <div
+                className="h-full bg-green-500"
+                style={{ width: `${progress}%`, minWidth: progress > 0 ? '2px' : '0' }}
+            />
         </div>
     )
 });
@@ -44,9 +47,20 @@ const ProgressBars = () => {
     }
 
     return (
-        <section className="flex flex-col items-start justify-start w-full gap-4 min-w-[500px]">
-            <button onClick={handleAddBar} className="border-[1px] border-black p-1 rounded-md">Add</button>
-            <div className="flex flex-col justify-start gap-2">
+        <section className="flex flex-col items-center justify-center w-full gap-6">
+            <div className="flex flex-col items-center gap-2">
+                <label htmlFor="add-bar-button" className="text-sm font-medium text-gray-700">
+                    Click the button to add progress bars
+                </label>
+                <button
+                    id="add-bar-button"
+                    onClick={handleAddBar}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-all active:scale-95"
+                >
+                    Add
+                </button>
+            </div>
+            <div className="flex flex-col items-center gap-4 w-full">
                 {bars.map((bar) => <ProgressBar key={bar.id} />)}
             </div>
         </section>

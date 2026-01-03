@@ -127,8 +127,26 @@ const TodoPage = () => {
     console.log('todos', todos);
 
     return (
-        <main className="flex flex-col justify-start items-center min-h-screen py-8">
-            <h1 className="text-3xl font-bold mb-6">ToDo list</h1>
+        <main className="flex flex-col justify-start items-center min-h-screen py-8 p-[32px]">
+            <h1 className="text-3xl font-bold mb-8">Manage Todos</h1>
+
+            <section className="w-full max-w-md mb-12 p-6 bg-blue-50 border border-blue-200 rounded-lg shadow-sm">
+                <h2 className="text-xl font-semibold text-blue-900 mb-4">Objective: Implement a ToDo Application</h2>
+                <p className="text-blue-800 mb-4">
+                    Create a comprehensive task management tool with persistence and search capabilities.
+                </p>
+                <div className="space-y-2">
+                    <p className="font-medium text-blue-900">Key Requirements:</p>
+                    <ul className="list-disc list-inside text-blue-800 space-y-1 ml-2">
+                        <li>Add new tasks to the list</li>
+                        <li>Toggle task completion status</li>
+                        <li>Delete tasks from the list</li>
+                        <li>Search/filter tasks with debouncing</li>
+                        <li>Persist data using Local Storage</li>
+                    </ul>
+                </div>
+            </section>
+
             <div className="w-full max-w-md flex flex-col gap-6">
                 <form id="todo-form" onSubmit={addToDo} className="flex flex-row gap-2">
                     <label htmlFor="title" className="sr-only">ToDo Name</label>

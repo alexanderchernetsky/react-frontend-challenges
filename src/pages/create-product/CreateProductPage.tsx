@@ -33,10 +33,28 @@ const CreateProductPage = () => {
     }
 
     return (
-        <main className="flex flex-col justify-start items-center">
-            <h1 className="text-2xl font-bold my-4">Create New Product</h1>
-            <section>
-                <form id="create-product-form" onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col justify-start items-start gap-4 p-4">
+        <main className="flex flex-col justify-start items-center p-[32px]">
+            <h1 className="text-3xl font-bold text-gray-900 mb-8">Create Product</h1>
+
+            <section className="w-full max-w-xl mb-12 p-6 bg-blue-50 border border-blue-200 rounded-lg shadow-sm">
+                <h2 className="text-xl font-semibold text-blue-900 mb-4">Objective: Build a Product Creation Form</h2>
+                <p className="text-blue-800 mb-4">
+                    Create an accessible product creation form using <code className="bg-blue-100 px-1 rounded">react-hook-form</code>.
+                </p>
+                <div className="space-y-2">
+                    <p className="font-medium text-blue-900">Key Requirements:</p>
+                    <ul className="list-disc list-inside text-blue-800 space-y-1 ml-2">
+                        <li>Implement form fields for Title, Description, Price, Category, and Image</li>
+                        <li>Use <code className="bg-blue-100 px-1 rounded">react-hook-form</code> for form state and validation</li>
+                        <li>Integrate a custom-built dropdown (CustomSelect) for the Category field</li>
+                        <li>Implement image upload with a live preview</li>
+                        <li>Ensure the form is accessible with proper labels and error messages</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section className="w-full max-w-xl bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                <form id="create-product-form" onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col justify-start items-start gap-4">
                     {/* Title */}
                     <fieldset className="w-full flex flex-col justify-start items-start gap-1 border-0 p-0">
                         <label htmlFor="title">Title</label>
