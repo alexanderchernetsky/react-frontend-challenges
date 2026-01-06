@@ -57,6 +57,11 @@ const pages = [
         title: 'Dice Roller',
         description: 'A simple dice roller application that allows users to roll multiple dice and see the results.'
     },
+    {
+        to: '/css-battle-235',
+        title: 'CSS Battle #235',
+        description: 'Re-create the layout on the image.'
+    },
 ]
 
 const HomePage = () => {

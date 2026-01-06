@@ -11,6 +11,7 @@ import AddMileagePage from "./pages/add-mileage/AddMileagePage";
 import MortgageCalculatorPage from "./pages/mortgage-calculator/MorgageCalculatorPage";
 import HolyGrailPage from "./pages/holy-grail/HolyGrailPage";
 import DiceRollerPage from "./pages/dice-roller/DiceRollerPage";
+import CSSBattle235Page from "./pages/css-battle-235/CSSBattle235Page";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/mortgage-calculator" element={<MortgageCalculatorPage />} />
             <Route path="/holy-grail" element={<HolyGrailPage />} />
             <Route path="/dice-roller" element={<DiceRollerPage />} />
+            <Route path="/css-battle-235" element={<CSSBattle235Page />} />
         </Routes>
     );
 }
