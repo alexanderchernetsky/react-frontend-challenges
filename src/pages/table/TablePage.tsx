@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import Table from "./Table/Table";
+import Table from "../../components/Table/Table";
 
 
 const mockData = [
@@ -74,7 +74,7 @@ const TablePage = () => {
             </section>
 
             <div className="w-full max-w-4xl overflow-x-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                <Table data={mockData} />
+                <Table data={mockData} colHeaders={['ID', 'Name', 'Age', 'Occupation']} rowsOnPage={[10, 20, 30]} />
             </div>
 
             <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">

@@ -1,14 +1,15 @@
-import {FC, useMemo, useState} from "react";
+import {useMemo, useState} from "react";
 
-interface User {
-    id: number;
-    name: string;
-    age: number;
-    occupation: string;
+// Generic interface for any table data
+interface TableData {
+    id: number | string;
+    [key: string]: any; // Allow any additional properties
 }
 
-interface TableProps {
-    data: User[];
+interface TableProps<T extends TableData> {
+    colHeaders: string[];
+    data: T[];
+    rowsOnPage?: number[];
 }
 
 // Notes:
@@ -17,10 +18,10 @@ interface TableProps {
 // Wrap pagination info in a <div> or <span> with role="status" and aria-live="polite"
 // Add a <caption> element inside the <table> (after the opening tag) to provde some context
 // Wrap your pagination div in a <nav> element with aria-label so that the pagination controls identified as navigation.
-// todo: way to improve - make component accept props for customisation of col headers, cell rendering, pagination options etc.
-const Table: FC<TableProps> = ({data}) => {
+// todo: way to improve - make component accept props for customisation cell rendering
+const Table = <T extends TableData>({colHeaders, data, rowsOnPage = [5,10,20]} : TableProps<T>) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(rowsOnPage[0]);
     const totalPages = Math.ceil(data.length / rowsPerPage);
 
     const handleNext = () => {
@@ -49,10 +50,11 @@ const Table: FC<TableProps> = ({data}) => {
                     </caption>
                     <thead className="bg-gray-50">
                     <tr>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Occupation</th>
+                        {colHeaders.map((header, index) => {
+                            return (
+                                <th key={index} scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{header}</th>
+                            )
+                        })}
                     </tr>
                     </thead>
 
@@ -64,14 +66,16 @@ const Table: FC<TableProps> = ({data}) => {
                             </td>
                         </tr>
                     ) : (
-                        sliceOfData.map(user => {
-                        return (
-                            <tr key={user.id} className="hover:bg-gray-50 transition-colors">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.id}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.name}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.age}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.occupation}</td>
-                            </tr>
+                        sliceOfData.map(entry => {
+                            const values = Object.values(entry);
+                            return (
+                                <tr key={entry.id} className="hover:bg-gray-50 transition-colors">
+                                    {values.map((value, index) => {
+                                        return (
+                                            <td key={index} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{value}</td>
+                                            )
+                                    })}
+                                </tr>
                         )
                     }))}
                     </tbody>
@@ -89,9 +93,11 @@ const Table: FC<TableProps> = ({data}) => {
                         onChange={handleSelection}
                         aria-describedby="rows-per-page-description"
                     >
-                        <option value={5}>5</option>
-                        <option value={10}>10</option>
-                        <option value={20}>20</option>
+                        {rowsOnPage.map((item, index) => {
+                            return (
+                                <option key={index} value={item}>{item}</option>
+                            )
+                        })}
                     </select>
                     <p id="rows-per-page-description" className="sr-only">This select changes the number of rows displayed in the table</p>
                     <span className="text-sm text-gray-700 whitespace-nowrap">per page</span>
