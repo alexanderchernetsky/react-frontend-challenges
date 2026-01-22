@@ -62,6 +62,11 @@ const pages = [
         title: 'CSS Battle #235',
         description: 'Re-create the layout on the image.'
     },
+    {
+        to: '/table',
+        title: 'Table',
+        description: 'Given a list of users, build a users data table that displays users in a paginated format.'
+    },
 ]
 
 const HomePage = () => {
