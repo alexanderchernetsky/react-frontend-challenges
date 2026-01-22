@@ -35,7 +35,8 @@ const pages = [
     {
         to: '/add-mileage-form',
         title: 'Add mileage form',
-        description: 'Create form like on the image. There is a dynamic field - destinations, select that fetches values from the API, on submit - send data to the external API using POST. The expenseName field should be prefilled as a string consisting of “startingPoint + destination”.'
+        description: 'Create form like on the image. There is a dynamic field - destinations, select that fetches values from the API, on submit - send data to the external API using POST. The expenseName field should be prefilled as a string consisting of “startingPoint + destination”.',
+        company: 'Moss'
     },
     {
         to: '/mortgage-calculator',
@@ -60,7 +61,8 @@ const pages = [
     {
         to: '/css-battle-235',
         title: 'CSS Battle #235',
-        description: 'Re-create the layout on the image.'
+        description: 'Re-create the layout on the image.',
+        company: 'Fluxon'
     },
     {
         to: '/table',
@@ -79,11 +81,18 @@ const HomePage = () => {
                         <Link
                             key={index}
                             to={page.to}
-                            className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 transition-colors group"
+                            className="flex flex-col p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 transition-colors group relative"
                         >
-                            <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors">
-                                {index + 1}. {page.title}
-                            </h5>
+                            <div className="flex justify-between items-start mb-2">
+                                <h5 className="text-xl font-bold tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors pr-2">
+                                    {index + 1}. {page.title}
+                                </h5>
+                                {page.company && (
+                                    <span className="flex-shrink-0 bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded border border-blue-400">
+                                        {page.company}
+                                    </span>
+                                )}
+                            </div>
                             <p className="font-normal text-gray-700">
                                 {page.description}
                             </p>
