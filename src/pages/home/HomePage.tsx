@@ -20,17 +20,20 @@ const pages = [
     {
         to: '/accordion',
         title: 'Accordion component',
-        description: 'An accessible, multi-expandable accordion component following WAI-ARIA patterns for screen reader support.'
+        description: 'An accessible, multi-expandable accordion component following WAI-ARIA patterns for screen reader support.',
+        company: 'Greatfrontend'
     },
     {
         to: '/contact-form',
         title: 'Contact form',
-        description: 'A robust contact form with manual validation, submission state handling (loading/success/error), and ARIA-live announcements.'
+        description: 'A robust contact form with manual validation, submission state handling (loading/success/error), and ARIA-live announcements.',
+        company: 'Greatfrontend'
     },
     {
         to: '/progress-bars',
         title: 'Progress bars',
-        description: 'An app where clicking the "Add" button adds progress bars to the page. The progress bars fill up gradually as soon as they are shown.'
+        description: 'An app where clicking the "Add" button adds progress bars to the page. The progress bars fill up gradually as soon as they are shown.',
+        company: 'Greatfrontend'
     },
     {
         to: '/add-mileage-form',
@@ -41,22 +44,26 @@ const pages = [
     {
         to: '/mortgage-calculator',
         title: 'Mortgage Calculator',
-        description: 'Build a simple mortgage calculator widget that takes in a loan amount, interest rate, loan term, and calculates the monthly mortgage payment, total payment amount, and total interest paid.'
+        description: 'Build a simple mortgage calculator widget that takes in a loan amount, interest rate, loan term, and calculates the monthly mortgage payment, total payment amount, and total interest paid.',
+        company: 'Greatfrontend'
     },
     {
         to: '/tabs',
         title: 'Tabs',
-        description: 'An accessible tabs component that allows users to switch between different content views.'
+        description: 'An accessible tabs component that allows users to switch between different content views.',
+        company: 'Greatfrontend'
     },
     {
         to: '/holy-grail',
         title: 'Holy Grail Layout',
-        description: 'The Holy Grail layout is a famous CSS page layout that has traditionally been hard to implement. It consists of a header, footer, and three columns. The left column contains navigation items, the middle column contains the page contents, and the right column contains ads.'
+        description: 'The Holy Grail layout is a famous CSS page layout that has traditionally been hard to implement. It consists of a header, footer, and three columns. The left column contains navigation items, the middle column contains the page contents, and the right column contains ads.',
+        company: 'Greatfrontend'
     },
     {
         to: '/dice-roller',
         title: 'Dice Roller',
-        description: 'A simple dice roller application that allows users to roll multiple dice and see the results.'
+        description: 'A simple dice roller application that allows users to roll multiple dice and see the results.',
+        company: 'Greatfrontend'
     },
     {
         to: '/css-battle-235',
@@ -67,7 +74,8 @@ const pages = [
     {
         to: '/table',
         title: 'Table',
-        description: 'Given a list of users, build a users data table that displays users in a paginated format.'
+        description: 'Given a list of users, build a users data table that displays users in a paginated format.',
+        company: 'Greatfrontend'
     },
 ]
 
