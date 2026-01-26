@@ -13,6 +13,7 @@ import HolyGrailPage from "./pages/holy-grail/HolyGrailPage";
 import DiceRollerPage from "./pages/dice-roller/DiceRollerPage";
 import CSSBattle235Page from "./pages/css-battle-235/CSSBattle235Page";
 import TablePage from "./pages/table/TablePage";
+import LikeButtonPage from "./pages/like-button/LikeButtonPage";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/dice-roller" element={<DiceRollerPage />} />
             <Route path="/css-battle-235" element={<CSSBattle235Page />} />
             <Route path="/table" element={<TablePage />} />
+            <Route path="/like-button" element={<LikeButtonPage />} />
         </Routes>
     );
 }

@@ -77,6 +77,12 @@ const pages = [
         description: 'Given a list of users, build a users data table that displays users in a paginated format.',
         company: 'Greatfrontend'
     },
+    {
+        to: '/like-button',
+        title: 'Like Button',
+        description: 'Create a Like button which appearance changes based on different states.',
+        company: 'Greatfrontend'
+    },
 ]
 
 const HomePage = () => {
