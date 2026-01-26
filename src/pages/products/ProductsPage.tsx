@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 import {fetchWithCache} from "../../utils/fetch";
 import {Product} from "./types";
 import ProductCard from "./ProductCard/ProductCard";
@@ -83,6 +84,10 @@ function ProductsPage() {
                 </ul>
                 <div id="bottomSentinel" className="h-4" />
             </section>
+
+            <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     );
 }

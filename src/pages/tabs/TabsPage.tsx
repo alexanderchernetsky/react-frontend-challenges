@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import Tabs from "../../components/Tabs/Tabs";
 
 const TabsPage = () => {
@@ -33,6 +34,10 @@ const TabsPage = () => {
             <section className="w-full max-w-2xl">
                 <Tabs tabs={tabs} defaultActiveTabId={2} />
             </section>
+
+            <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     )
 }

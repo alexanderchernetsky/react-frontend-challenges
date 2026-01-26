@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import LikeButton from "./LikeButton/LikeButton";
 
 const LikeButtonPage = () => {
@@ -52,6 +53,10 @@ const LikeButtonPage = () => {
                 {/* Like Button component will be implemented here */}
                     <LikeButton />
             </section>
+
+            <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     );
 };

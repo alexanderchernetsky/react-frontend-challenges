@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import HolyGrail from "./HolyGrail/HolyGrail";
 
 const HolyGrailPage = () => {
@@ -27,6 +28,10 @@ const HolyGrailPage = () => {
             <div className="w-full border-t border-gray-200">
                 <HolyGrail />
             </div>
+
+            <Link to="/" className="my-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     )
 }

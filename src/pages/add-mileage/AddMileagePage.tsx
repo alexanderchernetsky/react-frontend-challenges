@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import AddMileageForm from "./AddMileageForm/AddMileageForm";
 
 const AddMileagePage = () => {
@@ -26,6 +27,10 @@ const AddMileagePage = () => {
             <section className="w-full">
                 <AddMileageForm />
             </section>
+
+            <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     )
 }

@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import Accordion, {AccordionRow} from "../../components/Accordion/Accordion";
 
 const accordionTestData: AccordionRow[] = [
@@ -53,6 +54,10 @@ const AccordionPage = () => {
             <section className="w-full max-w-3xl">
                 <Accordion data={accordionTestData} />
             </section>
+
+            <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     )
 }

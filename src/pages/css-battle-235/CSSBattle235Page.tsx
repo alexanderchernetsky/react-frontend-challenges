@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import CSSBattleLayout from "./CSSBattleLayout/CSSBattleLayout";
 
 const CSSBattle235Page = () => {
@@ -24,6 +25,10 @@ const CSSBattle235Page = () => {
             <div className="mt-4 w-full border-t border-gray-200">
                 <CSSBattleLayout />
             </div>
+
+            <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     );
 };

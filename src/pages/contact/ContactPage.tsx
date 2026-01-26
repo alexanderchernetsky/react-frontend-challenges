@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import ContactForm from "./ContactForm/ContactForm";
 
 const ContactPage = () => {
@@ -27,6 +28,10 @@ const ContactPage = () => {
             <section className="w-full max-w-lg">
                 <ContactForm />
             </section>
+
+            <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     )
 }

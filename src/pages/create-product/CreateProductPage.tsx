@@ -1,4 +1,5 @@
 import {ChangeEvent, useState} from "react";
+import {Link} from "react-router-dom";
 import {Controller, useForm} from "react-hook-form";
 import CustomSelect from "../../components/Select/CustomSelect";
 
@@ -119,6 +120,10 @@ const CreateProductPage = () => {
                     </button>
                 </form>
             </section>
+
+            <Link to="/" className="mt-8 text-blue-600 hover:text-blue-800 transition-colors font-medium flex items-center gap-2">
+                ← Back to Home
+            </Link>
         </main>
     )
 }
