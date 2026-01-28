@@ -83,6 +83,12 @@ const pages = [
         description: 'Create a Like button which appearance changes based on different states.',
         company: 'Greatfrontend'
     },
+    {
+        to: '/star-rating',
+        title: 'Star Rating',
+        description: 'Create a star rating widget that allows users to select a rating and see hover effects.',
+        company: 'Greatfrontend'
+    },
 ]
 
 const HomePage = () => {

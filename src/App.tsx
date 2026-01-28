@@ -14,6 +14,7 @@ import DiceRollerPage from "./pages/dice-roller/DiceRollerPage";
 import CSSBattle235Page from "./pages/css-battle-235/CSSBattle235Page";
 import TablePage from "./pages/table/TablePage";
 import LikeButtonPage from "./pages/like-button/LikeButtonPage";
+import StarRatingPage from "./pages/star-rating/StarRatingPage";
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/css-battle-235" element={<CSSBattle235Page />} />
             <Route path="/table" element={<TablePage />} />
             <Route path="/like-button" element={<LikeButtonPage />} />
+            <Route path="/star-rating" element={<StarRatingPage />} />
         </Routes>
     );
 }
