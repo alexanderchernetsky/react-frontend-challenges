@@ -125,8 +125,6 @@ const TodoPage = () => {
         }
     }
 
-    console.log('todos', todos);
-
     return (
         <main className="flex flex-col justify-start items-center min-h-screen py-8 p-[32px]">
             <h1 className="text-3xl font-bold mb-8">Manage Todos</h1>
@@ -152,7 +150,7 @@ const TodoPage = () => {
                 <form id="todo-form" onSubmit={addToDo} className="flex flex-row gap-2">
                     <label htmlFor="title" className="sr-only">ToDo Name</label>
                     <input type="text" id="title" name="title" placeholder="New todo..." className="flex-1 border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">Add</button>
+                    <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">Add</button>
                 </form>
 
                 <div className="flex flex-col gap-2">

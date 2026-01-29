@@ -14,8 +14,9 @@ const pages = [
     },
     {
         to: '/todo',
-        title: 'Manage todos',
-        description: 'A comprehensive ToDo app with add, delete, search, and toggle completion features, utilizing Local Storage for data persistence.',
+        title: 'Todo list',
+        description: 'A ToDo app with add, delete, search, and toggle completion features, utilizing Local Storage for data persistence.',
+        company: 'Greatfrontend'
     },
     {
         to: '/accordion',
