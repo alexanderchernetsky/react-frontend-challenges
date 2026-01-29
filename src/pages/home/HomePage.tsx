@@ -90,6 +90,12 @@ const pages = [
         description: 'Create a star rating widget that allows users to select a rating and see hover effects.',
         company: 'Greatfrontend'
     },
+    {
+        to: '/file-explorer',
+        title: 'File Explorer',
+        description: 'Given an array of file objects, build a component that displays them in a hierarchical tree format.',
+        company: 'Greatfrontend'
+    },
 ]
 
 const HomePage = () => {

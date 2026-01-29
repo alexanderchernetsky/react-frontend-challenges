@@ -15,6 +15,7 @@ import CSSBattle235Page from "./pages/css-battle-235/CSSBattle235Page";
 import TablePage from "./pages/table/TablePage";
 import LikeButtonPage from "./pages/like-button/LikeButtonPage";
 import StarRatingPage from "./pages/star-rating/StarRatingPage";
+import FileExplorerPage from "./pages/file-explorer/FileExplorerPage";
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/table" element={<TablePage />} />
             <Route path="/like-button" element={<LikeButtonPage />} />
             <Route path="/star-rating" element={<StarRatingPage />} />
+            <Route path="/file-explorer" element={<FileExplorerPage />} />
         </Routes>
     );
 }
